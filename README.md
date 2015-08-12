@@ -49,4 +49,5 @@ python influxcat.py --output="tsv" --influxdb-host=ZYX:8086 --influxdb-name=meso
 ```
 python influxcat.py --output="pyplot" --influxdb-host=ZYX:8086 --influxdb-name=mesos "select value, executor_id from ipc where slave_id='20150810-150111-16843786-5050-41401-S3' group by time(10s) limit 100"
 ```
-Produces a pdf graph similar to: ![influxcat.pdf](https://github.com/nqn/influxcat/raw/master/examples/influxcat-1439347849.97.pdf)
+Produces a pdf graph, such as:
+![influxcat.png](https://github.com/nqn/influxcat/raw/master/examples/influxcat-1439347849.97.png)
