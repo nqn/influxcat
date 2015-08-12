@@ -1,5 +1,9 @@
 # influxcat
 
+## Dependencies
+
+* Python 2.7.X (with packages *numpy*, *prettytable* and optional *matplotlib* installed)
+
 ## Example use
 
 ```bash
