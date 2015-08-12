@@ -8,7 +8,7 @@ import datetime
 from prettytable import PrettyTable
 
 # Exceptional import of matplotlib. In case of server environment does not
-# have GKT interface. This import throws then Runtime Exceptions.
+# have GTK interface. This import throws then Runtime Exceptions.
 matplotlib_exception = None
 plt = None
 md = None
@@ -16,7 +16,7 @@ try:
     import matplotlib.pyplot as plt
     import matplotlib.dates as md
 except RuntimeError, e:
-    matplotlib_exception = "Gtk is not allowed in this terminal:{}".format(e.message)
+    matplotlib_exception = "GTK is not allowed in this terminal:{}".format(e.message)
 
 def json_from_url(url):
     while True:
