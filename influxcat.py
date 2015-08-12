@@ -16,7 +16,7 @@ try:
     import matplotlib.pyplot as plt
     import matplotlib.dates as md
 except RuntimeError, e:
-    matplotlib_exception = format("Gtk is not allowed in this terminal:{}", e.message)
+    matplotlib_exception = "Gtk is not allowed in this terminal:{}".format(e.message)
 
 def json_from_url(url):
     while True:
