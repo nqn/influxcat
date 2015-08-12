@@ -7,8 +7,8 @@ import string
 import datetime
 from prettytable import PrettyTable
 
-# Exceptional import of matplotlib. In case of server environment we don't
-# have GKT interfaces. This import throws then Runtime Exceptions.
+# Exceptional import of matplotlib. In case of server environment does not
+# have GKT interface. This import throws then Runtime Exceptions.
 matplotlib_exception = None
 plt = None
 md = None
