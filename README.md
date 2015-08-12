@@ -19,7 +19,7 @@ python influxcat.py --influxdb-host=ZYX:8086 --influxdb-name=mesos "select value
 | 1439353908727 |  8979681480001  |     0_0     | 0.317024335423 |
 +---------------+-----------------+-------------+----------------+
 
-python influxcat.py --output="csv" --influxdb-host=kp40.intelsdi.com:8086 --influxdb-name=mesos "select value, executor_id from ipc where slave_id='20150810-150111-16843786-5050-41401-S3' group by time(10s) limit 10"
+python influxcat.py --output="csv" --influxdb-host=ZYX:8086 --influxdb-name=mesos "select value, executor_id from ipc where slave_id='20150810-150111-16843786-5050-41401-S3' group by time(10s) limit 10"
 #time,sequence_number,executor_id,value
 1439353952805,8980874170001,0_0,0.300001214413
 1439353948716,8980765540001,0_0,0.293591263135
@@ -32,7 +32,7 @@ python influxcat.py --output="csv" --influxdb-host=kp40.intelsdi.com:8086 --infl
 1439353912820,8979791230001,0_0,0.319007780837
 1439353908727,8979681480001,0_0,0.317024335423
 
-python influxcat.py --output="tsv" --influxdb-host=kp40.intelsdi.com:8086 --influxdb-name=mesos "select value, executor_id from ipc where slave_id='20150810-150111-16843786-5050-41401-S3' group by time(10s) limit 10"
+python influxcat.py --output="tsv" --influxdb-host=ZYX:8086 --influxdb-name=mesos "select value, executor_id from ipc where slave_id='20150810-150111-16843786-5050-41401-S3' group by time(10s) limit 10"
 #time   sequence_number executor_id     value
 1439353952805   8980874170001   0_0     0.300001214413
 1439353948716   8980765540001   0_0     0.293591263135
@@ -47,5 +47,5 @@ python influxcat.py --output="tsv" --influxdb-host=kp40.intelsdi.com:8086 --infl
 ```
 
 ```
-python influxcat.py --output="pyplot" --influxdb-host=kp40.intelsdi.com:8086 --influxdb-name=mesos "select value, executor_id from ipc where slave_id='20150810-150111-16843786-5050-41401-S3' group by time(10s) limit 100"
+python influxcat.py --output="pyplot" --influxdb-host=ZYX:8086 --influxdb-name=mesos "select value, executor_id from ipc where slave_id='20150810-150111-16843786-5050-41401-S3' group by time(10s) limit 100"
 ```
