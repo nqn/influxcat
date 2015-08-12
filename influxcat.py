@@ -4,10 +4,12 @@ import argparse
 import time
 import sys
 import string
+import datetime
 from prettytable import PrettyTable
 
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib.dates as md
 
 def json_from_url(url):
     while True:
@@ -48,6 +50,7 @@ def format_plot(result, plot_by):
     # TODO(nnielsen): Support comma seperated plot_by
 
     cols = result[0]["columns"]
+    ts_name = result[0]["name"]
     
     # Find index of 'value'
     time_index = None
@@ -79,7 +82,7 @@ def format_plot(result, plot_by):
 
     for point in result[0]['points']:
         value = point[value_index]
-        timestamp = point[time_index]
+        timestamp = datetime.datetime.utcfromtimestamp(float(point[time_index]) / 1000)
 
         series_name = 'default'
         if plot_by_index is not None:
@@ -98,6 +101,20 @@ def format_plot(result, plot_by):
 
     if plot_by_index is not None:
         plt.legend()
+
+    plt.title(ts_name)
+    plt.grid(True)
+  
+    x1,x2,y1,y2 = plt.axis()
+    plt.axis((x1,x2, 0, y2))
+
+    plt.xticks(rotation=25)
+
+    ax=plt.gca()
+    xfmt = md.DateFormatter('%H:%M:%S')
+    ax.xaxis.set_major_formatter(xfmt)
+
+    plt.gcf().subplots_adjust(bottom=0.20)
 
     timestamp = time.time()
     output_file = "influxcat-%s.pdf" % timestamp
@@ -125,6 +142,10 @@ def main():
         sys.exit(1)
 
     result = query(influx_endpoint, string.join(args.command, ' '))
+
+    if len(result) < 1:
+        print "Empty result"
+        sys.exit(1)
 
     if args.output == 'pretty-print':
         cols = result[0]["columns"]
