@@ -7,9 +7,16 @@ import string
 import datetime
 from prettytable import PrettyTable
 
-import numpy as np
-import matplotlib.pyplot as plt
-import matplotlib.dates as md
+# Exceptional import of matplotlib. In case of server environment does not
+# have GTK interface. This import throws then Runtime Exceptions.
+matplotlib_exception = None
+plt = None
+md = None
+try:
+    import matplotlib.pyplot as plt
+    import matplotlib.dates as md
+except RuntimeError, e:
+    matplotlib_exception = "GTK is not allowed in this terminal:{}".format(e.message)
 
 def json_from_url(url):
     while True:
@@ -133,6 +140,10 @@ def main():
     parser.add_argument("command", nargs=argparse.REMAINDER)
 
     args = parser.parse_args()
+    if args.output == 'pyplot' and matplotlib_exception is not None:
+        print matplotlib_exception
+        print "Please provide another output option."
+        sys.exit(1)
 
     influx_endpoint = 'http://%s/db/%s/series?u=%s&p=%s' % (
         args.influxdb_host, args.influxdb_name, args.influxdb_user, args.influxdb_password)
